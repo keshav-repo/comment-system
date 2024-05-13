@@ -1,23 +1,25 @@
 package com.intuit.commentsystem.service;
 
+import com.intuit.commentsystem.document.ActionType;
 import com.intuit.commentsystem.document.Reaction;
 import com.intuit.commentsystem.document.ReactionType;
+import com.intuit.commentsystem.dto.ReactionParticipent;
+
 import java.util.List;
 
 public interface ReactionService {
     /**
-     * get all the reaction for a particular type
-     * @param commentId
+     * get all the reaction for a particular type for the reference id of post, comment or anything else
+     * @param actionType, reactionType, refId
      * @param reactionType
+     * @param refId
      * @return
      */
-    public List<Reaction> getReaction(String commentId, ReactionType reactionType);
+    public List<ReactionParticipent> getReactionParticipant(ActionType actionType, ReactionType reactionType, String refId);
 
 
     /**
-     * add a reaction to a comment. it can be either like or dislike
-     * @param commentId
-     * @param reactionType
+     * @param reaction
      */
-    public void react(String commentId, ReactionType reactionType);
+    public void react(Reaction reaction);
 }

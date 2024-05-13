@@ -23,4 +23,6 @@ public class Comment {
     private LocalDateTime localDateTime;
     @Indexed
     private String postId;
+    private long likeCount;
+    private long dislikeCount;
 }

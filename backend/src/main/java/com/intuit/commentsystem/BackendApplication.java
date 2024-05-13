@@ -55,13 +55,13 @@ public class BackendApplication implements CommandLineRunner {
 		String userId = "6641848a93a3c0531887bda3";
 
 		// add a like
-		Reaction reaction = CommentReaction.builder()
-				.userId(userId)
-				.dateTime(LocalDateTime.now())
-				.reactionType(ReactionType.LIKE)
-				.commentId(commentId)
-				.build();
-		mongoTemplate.save(reaction);
+//		Reaction reaction = CommentReaction.builder()
+//				.userId(userId)
+//				.dateTime(LocalDateTime.now())
+//				//.reactionType(ReactionType.LIKE)
+//				.commentId(commentId)
+//				.build();
+//		mongoTemplate.save(reaction);
 
 
 	}

@@ -16,6 +16,7 @@ public class CommentDto {
     private String commentId;
     private String content;
     private String parentId;
+    private String postId;
     private LocalDateTime localDateTime;
     List<ReactionDto> likes;
     List<ReactionDto> dislikes;

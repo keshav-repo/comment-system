@@ -1,6 +1,9 @@
 package com.intuit.commentsystem.service;
 
 import java.util.List;
+
+import com.intuit.commentsystem.document.ActionType;
+import com.intuit.commentsystem.document.Comment;
 import com.intuit.commentsystem.dto.CommentDto;
 
 public interface CommentService {
@@ -16,11 +19,24 @@ public interface CommentService {
      * @param commentId
      * @return List<CommentResponse>
      */
-    public List<CommentDto> reply(String commentId);
+    public List<CommentDto> getReply(String commentId);
 
     /**
      * Add a comment
      * @param commentDto
      */
-    public void addComment(CommentDto commentDto);
+    public CommentDto addComment(CommentDto commentDto);
+
+    /**
+     * get comment corresponding to a commentIt
+     * @param commentId
+     */
+    public Comment getComment(String commentId);
+
+    /**
+     * increase like or dislike count
+     * @param actionType
+     * @param commentId
+     */
+    public void incrementActionCount(ActionType actionType, String commentId);
 }
