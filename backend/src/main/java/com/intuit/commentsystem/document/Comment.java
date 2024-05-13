@@ -1,28 +1,26 @@
-package com.intuit.commentsystem.model;
+package com.intuit.commentsystem.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Document("post")
+@Document("comment")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Post {
+public class Comment {
     @Id
-    private String postId;
+    private String commentId;
     private String content;
+    private String parentId;
     private LocalDateTime localDateTime;
-    @BsonIgnore
-    private List<Reaction> likesList;
-    @BsonIgnore
-    private List<Reaction> dislikeList;
+    @Indexed
+    private String postId;
 }

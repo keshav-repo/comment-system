@@ -1,6 +1,6 @@
 package com.intuit.commentsystem;
 
-import com.intuit.commentsystem.model.*;
+import com.intuit.commentsystem.document.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

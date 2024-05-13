@@ -1,4 +1,4 @@
-package com.intuit.commentsystem.model;
+package com.intuit.commentsystem.document;
 
 public enum ReactionType {
     LIKE, DISLIKE

@@ -1,4 +1,4 @@
-package com.intuit.commentsystem.model;
+package com.intuit.commentsystem.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,16 +7,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-
-@Document("reaction")
+@Document("user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Reaction {
+@Builder
+public class User {
     @Id
-    private String reactionId;
     private String userId;
-    private LocalDateTime dateTime;
-    private ReactionType reactionType;
+    private String userName;
 }

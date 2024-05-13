@@ -1,10 +1,9 @@
-package com.intuit.commentsystem.model;
+package com.intuit.commentsystem.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
