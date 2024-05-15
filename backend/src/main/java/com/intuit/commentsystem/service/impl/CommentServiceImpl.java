@@ -24,9 +24,13 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    public void cleanUp(){
+
+    }
+
     @Override
     public List<CommentDto> firstlevelcomment(int n) {
-        Query query = new Query();
+        Query query = new Query((Criteria.where("parentId").isNull()));
         query.with(Sort.by(new Sort.Order(Sort.Direction.DESC, "localDateTime")));
         query.limit(n);
         List<Comment> comments = null;
