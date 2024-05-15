@@ -56,7 +56,9 @@ public class CommentControllerTest {
         }
         when(commentService.firstlevelcomment(any(Integer.class), any(String.class))).thenReturn(mockCommentDtoList);
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/comment/firstLevel").param("n", String.valueOf(n)))
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/comment/firstLevel")
+                        .param("n", String.valueOf(n))
+                        .param("postId", "123"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -105,7 +107,6 @@ public class CommentControllerTest {
                 .actionType(ActionType.LIKE.toString())
                 .reactionType(ReactionType.COMMENT.toString())
                 .refId("123")
-                .userName("user1")
                 .userId("7631")
                 .build();
         String jsonBody = mapper.writeValueAsString(reactionDto);

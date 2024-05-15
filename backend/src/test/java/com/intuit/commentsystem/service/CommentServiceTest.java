@@ -30,6 +30,8 @@ public class CommentServiceTest {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    Post post;
+
     @BeforeEach
     public void cleanUpBeforeOperation() throws IOException {
         mongoTemplate.remove(new Query(), Comment.class);
@@ -39,7 +41,7 @@ public class CommentServiceTest {
     public void firstlevelcommentTest() throws InterruptedException {
         List<Comment> commentList = populateInMomoryDB();
 
-        List<CommentDto> commentDtoList = commentService.firstlevelcomment(2, "");
+        List<CommentDto> commentDtoList = commentService.firstlevelcomment(2, post.getPostId());
 
         Assertions.assertEquals(2, commentDtoList.size());
         Assertions.assertEquals(commentDtoList.get(0).getCommentId(), commentList.get(3).getCommentId());
@@ -84,7 +86,7 @@ public class CommentServiceTest {
     }
 
     private List<Comment> populateInMomoryDB() throws InterruptedException {
-        Post post = Post.builder()
+        post = Post.builder()
                 .content("post content")
                 .build();
         mongoTemplate.save(post);
