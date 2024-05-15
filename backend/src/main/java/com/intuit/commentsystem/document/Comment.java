@@ -25,4 +25,5 @@ public class Comment {
     private String postId;
     private long likeCount;
     private long dislikeCount;
+    private String userId;
 }

@@ -24,6 +24,7 @@ public class CommentDto {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime localDateTime;
-    List<ReactionDto> likes;
-    List<ReactionDto> dislikes;
+    private long likesCount;
+    private long dislikesCount;
+    private String userId;
 }

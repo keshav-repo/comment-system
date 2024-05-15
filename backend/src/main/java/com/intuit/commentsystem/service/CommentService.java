@@ -12,7 +12,7 @@ public interface CommentService {
      * @param n
      * @return List<CommentResponse>
      */
-    public List<CommentDto> firstlevelcomment(int n);
+    public List<CommentDto> firstlevelcomment(int n, String postId);
 
     /**
      * return a list of comment corresponding to reply for a comment
@@ -31,7 +31,7 @@ public interface CommentService {
      * get comment corresponding to a commentIt
      * @param commentId
      */
-    public Comment getComment(String commentId);
+    public CommentDto getComment(String commentId);
 
     /**
      * increase like or dislike count

@@ -27,8 +27,8 @@ public class CommentController {
     private ReactionService reactionService;
 
     @GetMapping("/firstLevel")
-    public List<CommentDto> firstlevelcomment(@RequestParam int n) {
-        return commentService.firstlevelcomment(n);
+    public List<CommentDto> firstlevelcomment(@RequestParam int n, @RequestParam String postId) {
+        return commentService.firstlevelcomment(n, postId);
     }
 
     @GetMapping("/reply/{commentId}")
@@ -39,6 +39,11 @@ public class CommentController {
     @PostMapping
     public CommentDto addComment(@RequestBody CommentDto commentDto) {
         return commentService.addComment(commentDto);
+    }
+
+    @GetMapping
+    public CommentDto getComment(@RequestParam String commentId){
+        return commentService.getComment(commentId);
     }
 
     @PostMapping("/react")

@@ -54,7 +54,7 @@ public class CommentControllerTest {
         for (int i = 0; i < n; i++) {
             mockCommentDtoList.add(CommentDto.builder().content("comment " + (i + 1)).build());
         }
-        when(commentService.firstlevelcomment(n)).thenReturn(mockCommentDtoList);
+        when(commentService.firstlevelcomment(any(Integer.class), any(String.class))).thenReturn(mockCommentDtoList);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/comment/firstLevel").param("n", String.valueOf(n)))
                 .andExpect(status().isOk())

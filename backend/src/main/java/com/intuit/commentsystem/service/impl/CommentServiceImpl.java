@@ -25,8 +25,8 @@ public class CommentServiceImpl implements CommentService {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<CommentDto> firstlevelcomment(int n) {
-        Query query = new Query((Criteria.where("parentId").isNull()));
+    public List<CommentDto> firstlevelcomment(int n, String postId) {
+        Query query = new Query(( Criteria.where("postId").is(postId).and("parentId").isNull()));
         query.with(Sort.by(new Sort.Order(Sort.Direction.DESC, "localDateTime")));
         query.limit(n);
         List<Comment> comments = null;
@@ -42,6 +42,9 @@ public class CommentServiceImpl implements CommentService {
                         .parentId(comment.getParentId())
                         .postId(comment.getPostId())
                         .localDateTime(comment.getLocalDateTime())
+                        .userId(comment.getUserId())
+                        .dislikesCount(comment.getDislikeCount())
+                        .likesCount(comment.getLikeCount())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -74,6 +77,7 @@ public class CommentServiceImpl implements CommentService {
                 .postId(commentDto.getParentId())
                 .localDateTime(LocalDateTime.now())
                 .postId(commentDto.getPostId())
+                .userId(commentDto.getUserId())
                 .build();
         try {
             mongoTemplate.save(comment);
@@ -86,7 +90,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment getComment(String commentId) {
+    public CommentDto getComment(String commentId) {
         Comment comment = null;
         Query query = Query.query(Criteria.where("_id").is(commentId));
         try {
@@ -94,7 +98,16 @@ public class CommentServiceImpl implements CommentService {
         } catch (Exception e) {
             log.error("error finding post {}", commentId);
         }
-        return comment;
+        return CommentDto.builder()
+                .commentId(comment.getCommentId())
+                .content(comment.getContent())
+                .parentId(comment.getParentId())
+                .localDateTime(comment.getLocalDateTime())
+                .postId(comment.getPostId())
+                .likesCount(comment.getLikeCount())
+                .dislikesCount(comment.getDislikeCount())
+                .userId(comment.getUserId())
+                .build();
     }
 
     public void incrementActionCount(ActionType actionType, String commentId){

@@ -2,6 +2,7 @@ package com.intuit.commentsystem.service;
 
 import com.intuit.commentsystem.document.ActionType;
 import com.intuit.commentsystem.document.Comment;
+import com.intuit.commentsystem.document.Post;
 import com.intuit.commentsystem.dto.CommentDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +39,7 @@ public class CommentServiceTest {
     public void firstlevelcommentTest() throws InterruptedException {
         List<Comment> commentList = populateInMomoryDB();
 
-        List<CommentDto> commentDtoList = commentService.firstlevelcomment(2);
+        List<CommentDto> commentDtoList = commentService.firstlevelcomment(2, "");
 
         Assertions.assertEquals(2, commentDtoList.size());
         Assertions.assertEquals(commentDtoList.get(0).getCommentId(), commentList.get(3).getCommentId());
@@ -83,8 +84,14 @@ public class CommentServiceTest {
     }
 
     private List<Comment> populateInMomoryDB() throws InterruptedException {
+        Post post = Post.builder()
+                .content("post content")
+                .build();
+        mongoTemplate.save(post);
+
         Comment comment1 = Comment.builder()
                 .commentId("1")
+                .postId(post.getPostId())
                 .content("level 1 first comment")
                 .localDateTime(LocalDateTime.now())
                 .build();
@@ -92,6 +99,7 @@ public class CommentServiceTest {
         TimeUnit.SECONDS.sleep(1);
         Comment comment2 = Comment.builder()
                 .commentId("2")
+                .postId(post.getPostId())
                 .content("level 2 comment under first comment")
                 .localDateTime(LocalDateTime.now())
                 .parentId(comment1.getCommentId())
@@ -100,6 +108,7 @@ public class CommentServiceTest {
         TimeUnit.SECONDS.sleep(1);
         Comment comment3 = Comment.builder()
                 .commentId("3")
+                .postId(post.getPostId())
                 .content("level 1 second comment")
                 .localDateTime(LocalDateTime.now())
                 .build();
@@ -107,6 +116,7 @@ public class CommentServiceTest {
         TimeUnit.SECONDS.sleep(1);
         Comment comment4 = Comment.builder()
                 .commentId("4")
+                .postId(post.getPostId())
                 .content("level 1 third comment")
                 .localDateTime(LocalDateTime.now())
                 .build();
@@ -115,6 +125,7 @@ public class CommentServiceTest {
 
         Comment comment5 = Comment.builder()
                 .commentId("5")
+                .postId(post.getPostId())
                 .content("level 2 second comment under first comment")
                 .localDateTime(LocalDateTime.now())
                 .parentId(comment1.getCommentId())

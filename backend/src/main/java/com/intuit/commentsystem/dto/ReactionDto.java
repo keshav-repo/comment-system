@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReactionDto {
-    private String userName;
     private String refId;
     private String actionType;
     private String reactionType;
