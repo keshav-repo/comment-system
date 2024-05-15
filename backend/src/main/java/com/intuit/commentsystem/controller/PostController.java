@@ -12,11 +12,11 @@ public class PostController {
     @Autowired
     private PostService postService;
     @PostMapping
-    public Post addPost(@RequestBody PostDto postDto){
+    public PostDto addPost(@RequestBody PostDto postDto){
        return postService.addPost(postDto);
     }
     @GetMapping("/{postId}")
-    public Post getPost(@PathVariable String postId){
+    public PostDto getPost(@PathVariable String postId){
         return postService.getPost(postId);
     }
 }

@@ -9,12 +9,12 @@ public interface PostService {
      * @param postDto
      * @return Post
      */
-    public Post addPost(PostDto postDto);
+    public PostDto addPost(PostDto postDto);
 
     /**
      * get a post
      * @param postId
      * @return Post
      */
-    public Post getPost(String postId);
+    public PostDto getPost(String postId);
 }

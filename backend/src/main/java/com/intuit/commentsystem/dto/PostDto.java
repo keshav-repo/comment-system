@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDto {
+    private String postId;
     private String content;
     List<ReactionDto> likes;
     List<ReactionDto> dislikes;

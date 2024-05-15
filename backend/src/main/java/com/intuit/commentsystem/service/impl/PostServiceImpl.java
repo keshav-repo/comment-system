@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 
 @Service
 @Slf4j
@@ -20,7 +21,7 @@ public class PostServiceImpl implements PostService {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public Post addPost(PostDto postDto) {
+    public PostDto addPost(PostDto postDto) {
         Post post = Post.builder()
                 .content(postDto.getContent())
                 .localDateTime(LocalDateTime.now())
@@ -30,11 +31,16 @@ public class PostServiceImpl implements PostService {
         } catch (Exception e) {
             log.error("unable to save post info");
         }
-        return post;
+        return PostDto.builder()
+                .content(post.getContent())
+                .postId(post.getPostId())
+                .likes(Collections.emptyList())
+                .dislikes(Collections.emptyList())
+                .build();
     }
 
     @Override
-    public Post getPost(String postId) {
+    public PostDto getPost(String postId) {
         Post post = null;
         Query query = Query.query(Criteria.where("_id").is(postId));
         try{
@@ -42,6 +48,11 @@ public class PostServiceImpl implements PostService {
         }catch (Exception e){
             log.error("error finding post {}", postId);
         }
-        return post;
+        return PostDto.builder()
+                .content(post.getContent())
+                .postId(post.getPostId())
+                .likes(Collections.emptyList())
+                .dislikes(Collections.emptyList())
+                .build();
     }
 }
