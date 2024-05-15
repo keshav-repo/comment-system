@@ -24,10 +24,6 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void cleanUp(){
-
-    }
-
     @Override
     public List<CommentDto> firstlevelcomment(int n) {
         Query query = new Query((Criteria.where("parentId").isNull()));
