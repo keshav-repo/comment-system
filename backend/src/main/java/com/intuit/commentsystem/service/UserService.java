@@ -1,6 +1,7 @@
 package com.intuit.commentsystem.service;
 
 import com.intuit.commentsystem.document.User;
+import com.intuit.commentsystem.dto.UserDto;
 
 public interface UserService {
     /**
@@ -8,12 +9,12 @@ public interface UserService {
      * @param user
      * @return User
      */
-    public User addUser(User user);
+    public UserDto addUser(User user);
 
     /**
      * Get user by userId
      * @param userId
      * @return User
      */
-    public User getUser(String userId);
+    public UserDto getUser(String userId);
 }
