@@ -13,8 +13,8 @@ public interface UserService {
 
     /**
      * Get user by userId
-     * @param userId
+     * @param userName
      * @return User
      */
-    public UserDto getUser(String userId);
+    public UserDto getUser(String userName);
 }

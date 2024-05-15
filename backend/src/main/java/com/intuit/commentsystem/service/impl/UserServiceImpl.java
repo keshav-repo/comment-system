@@ -27,9 +27,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUser(String userId) {
+    public UserDto getUser(String userName) {
         User user = null;
-        Query query = Query.query(Criteria.where("userName").is(userId));
+        Query query = Query.query(Criteria.where("userName").is(userName));
         try{
            user = mongoTemplate.findOne(query, User.class);
         }catch (Exception e){
