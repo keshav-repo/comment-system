@@ -20,7 +20,7 @@ public class UserController {
                 .build());
     }
     @GetMapping
-    public UserDto addUser(@RequestParam String userName) {
+    public UserDto getUser(@RequestParam String userName) {
         log.info("received request to fetch user");
         return userService.getUser(userName);
     }
